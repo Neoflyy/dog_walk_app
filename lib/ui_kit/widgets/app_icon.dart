@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class AppIcon extends StatelessWidget {
+  const AppIcon({super.key, required this.icon});
+
+  final String icon;
 
   @override
   Widget build(BuildContext context) {
