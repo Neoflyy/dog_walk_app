@@ -12,7 +12,11 @@ class TextStyles {
     fontWeight: FontWeight.bold,
   );
 
-  // Body Text
+  static TextStyle bodyXLarge = const TextStyle(
+    fontSize: 17,
+    fontWeight: FontWeight.bold,
+  );
+
   static TextStyle bodyLarge = const TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.bold,

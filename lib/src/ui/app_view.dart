@@ -33,7 +33,7 @@ class _AppViewState extends State<AppView> {
   Widget build(BuildContext context) {
     return AppScaffold(
       hasNavBar: true,
-      header: const AppheaderWidget(),
+      header: const AppHeaderWidget(),
       bottomNavigation: BottomNavigation(
         currentTab: currentTab,
         onPressed: (s) {
@@ -45,8 +45,8 @@ class _AppViewState extends State<AppView> {
   }
 }
 
-class AppheaderWidget extends StatelessWidget {
-  const AppheaderWidget({
+class AppHeaderWidget extends StatelessWidget {
+  const AppHeaderWidget({
     super.key,
   });
 

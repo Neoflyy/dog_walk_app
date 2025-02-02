@@ -21,9 +21,7 @@ class AppScaffold extends StatelessWidget {
       bottomNavigationBar: hasNavBar ? bottomNavigation : null,
       backgroundColor: AppColors.surface,
       body: SafeArea(
-          child: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
               padding: const EdgeInsets.only(
@@ -34,10 +32,12 @@ class AppScaffold extends StatelessWidget {
               ),
               child: header,
             ),
-            body
+            Expanded(
+              child: body,
+            ),
           ],
         ),
-      )),
+      ),
     );
   }
 }
