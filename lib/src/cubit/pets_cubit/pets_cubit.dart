@@ -17,6 +17,8 @@ class PetsCubit extends Cubit<PetsState> {
 
   Future<void> fetchPets() async {
     emit(state.copyWith(status: Status.loading));
+    //fake response time
+    await Future.delayed(const Duration(seconds: 2));
 
     final response = await _petsRepository.getPets();
     //logic for response

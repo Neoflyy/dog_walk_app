@@ -2,6 +2,7 @@ import 'package:dog_walk_app/commons/enums.dart';
 import 'package:dog_walk_app/src/cubit/pets_cubit/pets_cubit.dart';
 import 'package:dog_walk_app/src/data/models/pet_model.dart';
 import 'package:dog_walk_app/src/data/repositories/pets_repository.dart';
+import 'package:dog_walk_app/src/ui/pages/detail/detail_page.dart';
 import 'package:dog_walk_app/src/ui/widgets/widgets.dart';
 import 'package:dog_walk_app/ui_kit/ui_kit.dart';
 import 'package:dog_walk_app/ui_kit/widgets/app_icon.dart';
@@ -14,9 +15,9 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) =>
-          PetsCubit(petsRepository: context.read<PetsRepository>())
-            ..fetchPets(),
+      create: (context) => PetsCubit(
+        petsRepository: context.read<PetsRepository>(),
+      )..fetchPets(),
       child: const HomeView(),
     );
   }
@@ -32,62 +33,74 @@ class HomeView extends StatelessWidget {
       'Small dogs',
     ];
 
-    return Container(
-      padding: const EdgeInsets.all(16),
-      color: AppColors.primaryBackground,
-      width: MediaQuery.sizeOf(context).width,
-      height: MediaQuery.sizeOf(context).height,
-      child: Column(
-        children: [
-          Row(
-            children: [
-              for (final label in _labelList) TagWidget(label: label),
-            ],
-          ),
-          Expanded(
-            child: BlocBuilder<PetsCubit, PetsState>(
-              builder: (context, state) {
-                if (state.status == Status.loading) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-                if (state.status == Status.success && state.pets.isNotEmpty) {
-                  return ListView.builder(
-                    itemCount: state.pets.length + 1,
-                    scrollDirection: Axis.vertical,
-                    itemBuilder: (context, index) {
-                      if (index == state.pets.length) {
-                        return const SizedBox(height: 100);
-                      }
-                      final PetModel pet = state.pets[index];
-                      print(pet);
-                      return Padding(
-                        padding: const EdgeInsets.only(bottom: 16),
-                        child: AppCard(
-                          image: pet.image,
-                          content: _PetContentWidget(
-                            title: pet.name,
-                            serviceName: pet.service.name,
-                            availability: pet.availability,
-                            icon: pet.service.icon,
-                          ),
-                          onTap: () {},
-                        ),
-                      );
-                    },
-                  );
-                } else {
-                  return const Center(
-                    child: Text('No pets found'),
-                  );
-                }
-              },
+    return RefreshIndicator.adaptive(
+      onRefresh: () {
+        return context.read<PetsCubit>().fetchPets();
+      },
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        color: AppColors.primaryBackground,
+        width: MediaQuery.sizeOf(context).width,
+        height: MediaQuery.sizeOf(context).height,
+        child: Column(
+          children: [
+            Row(
+              children: [
+                for (final label in _labelList) TagWidget(label: label),
+              ],
             ),
-          )
-        ],
+            Expanded(
+              child: BlocBuilder<PetsCubit, PetsState>(
+                builder: (context, state) {
+                  if (state.status == Status.loading) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                  if (state.status == Status.success && state.pets.isNotEmpty) {
+                    return ListView.builder(
+                      itemCount: state.pets.length + 1,
+                      scrollDirection: Axis.vertical,
+                      itemBuilder: (context, index) {
+                        if (index == state.pets.length) {
+                          return const SizedBox(height: 100);
+                        }
+                        final PetModel pet = state.pets[index];
+                        print(pet);
+                        return Padding(
+                          padding: const EdgeInsets.only(bottom: 16),
+                          child: AppCard(
+                            image: pet.image,
+                            content: _PetContentWidget(
+                              title: pet.name,
+                              price: pet.service.price.toString(),
+                              serviceName: pet.service.name,
+                              availability: pet.availability,
+                              icon: pet.service.icon,
+                            ),
+                            onTap: () {
+                              _onCardPressed(context, pet);
+                            },
+                          ),
+                        );
+                      },
+                    );
+                  } else {
+                    return const Center(
+                      child: Text('No pets found'),
+                    );
+                  }
+                },
+              ),
+            )
+          ],
+        ),
       ),
     );
+  }
+
+  void _onCardPressed(BuildContext context, PetModel pet) {
+    Navigator.pushNamed(context, DetailPage.path, arguments: {'pet': pet});
   }
 }
 
@@ -96,11 +109,13 @@ class _PetContentWidget extends StatelessWidget {
       {required this.title,
       required this.availability,
       required this.serviceName,
+      required this.price,
       required this.icon});
 
   final String title;
   final String availability;
   final String serviceName;
+  final String price;
   final String icon;
 
   @override
@@ -144,6 +159,11 @@ class _PetContentWidget extends StatelessWidget {
               style: TextStyles.bodySmall.copyWith(
                   color: AppColors.surface, fontWeight: FontWeight.w500),
             ),
+            const Spacer(),
+            Text(
+              '\$ $price / hr',
+              style: TextStyles.bodyXLarge.copyWith(color: AppColors.surface),
+            )
           ],
         )
       ],

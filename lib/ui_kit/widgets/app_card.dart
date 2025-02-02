@@ -18,9 +18,13 @@ class AppCard extends StatefulWidget {
 }
 
 class _AppCardState extends State<AppCard> {
-  double _defaultCardWidth = 343;
-  double _defaultCardHeight = 200;
-  bool isActive = false;
+  final double _defaultCardWidth = 343;
+  final double _defaultCardHeight = 200;
+
+  final BorderRadius _radius = const BorderRadius.all(Radius.circular(8));
+
+  bool _isActive = false;
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -32,20 +36,23 @@ class _AppCardState extends State<AppCard> {
           child: Stack(
             fit: StackFit.expand,
             children: [
-              Image.asset(
-                widget.image,
-                fit: BoxFit.cover,
+              ClipRRect(
+                borderRadius: _radius,
+                child: Image.asset(
+                  widget.image,
+                  fit: BoxFit.cover,
+                ),
               ),
               Positioned(
                 top: 10,
                 right: 10,
                 child: InkWell(
                   onTap: () {
-                    isActive = !isActive;
+                    _isActive = !_isActive;
                     setState(() {});
                   },
                   child: SvgPicture.asset(
-                    isActive ? Assets.saveIconFilled : Assets.saveIcon,
+                    _isActive ? Assets.saveIconFilled : Assets.saveIcon,
                     fit: BoxFit.cover,
                   ),
                 ),
