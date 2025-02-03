@@ -1,55 +1,116 @@
 [
-    {
+  {
+    "id": 1,
+    "name": "Gnocchi",
+    "availability": "Weekdays 7:00",
+    "owner": "David Warner",
+    "contact": "hello@davidwarner.com",
+    "ownerImage": "assets/imgs/owner.png",
+    "service": {
       "id": 1,
-      "name": "Gnocchi",
-      "availability": "Weekdays 7:00",
+      "name": "Dog walking",
+      "icon": "assets/imgs/dog_walking_icon.png",
+      "detail": "Gnocchi is lovely and well trained dog. She loves to pull a little bit when she sees other dogs. ",
+      "price": 12,
+      "hours": [
+        {
+          "day": "Mon",
+          "from": "7AM",
+          "to": "8AM",
+          "isBooked": true
+        },
+        {
+          "day": "Tue",
+          "from": "7AM",
+          "to": "8AM",
+          "isBooked": false
+        },
+        {
+          "day": "Wed",
+          "from": "7AM",
+          "to": "8AM",
+          "isBooked": true
+        },
+        {
+          "day": "Thu",
+          "from": "7AM",
+          "to": "8AM",
+          "isBooked": true
+        }
+        ,  {
+          "day": "Fri",
+          "from": "7AM",
+          "to": "8AM",
+          "isBooked": false
+        }
+      ]
+    },
+    "isSaved": false,
+    "age": "2024/01/01",
+    "size": "Medium",
+    "sex": "Female",
+    "location": "Kastanienallee, Berlin",
+    "image": "assets/imgs/dog_1.png"
+  },
+  {
+    "id": 2,
+    "name": "Ricotti",
+    "availability": "Weekdays 9:00",
+    "owner": "David Warner",
+    "contact": "hello@davidwarner.com",
+    "ownerImage": "assets/imgs/owner.png",
+    "service": {
+      "id": 2,
+      "name": "Day Care",
+      "icon": "assets/imgs/day_care_icon.png",
+      "detail": "Ricotti is lovely and well trained dog. She loves to pull a little bit when she sees other dogs. ",
+      "price": 18,
+      "hours": [
+        {
+          "day": "Mon",
+          "from": "9AM",
+          "to": "10AM",
+          "isBooked": true
+        },
+        {
+          "day": "Wed",
+          "from": "9AM",
+          "to": "10AM",
+          "isBooked": false
+        }
+      ]
+    },
+    "isSaved": true,
+    "age": "2023/08/15",
+    "size": "Small",
+    "sex": "Male",
+    "location": "Friedrichstrasse, Berlin",
+    "image": "assets/imgs/dog_2.png"
+  },
+  {
+      "id": 3,
+      "name": "Penne",
+      "owner": "David Warner",
+      "contact": "hello@davidwarner.com",
+      "ownerImage": "assets/imgs/owner.png",
+      "availability": "Weekdays 9:00",
       "service": {
-        "id": 1,
-        "name": "Dog walking",
+        "id": 3,
+        "name": "Dog Walking",
         "icon": "assets/imgs/dog_walking_icon.png",
+        "detail": "Penne is lovely and well trained dog. She loves to pull a little bit when she sees other dogs. ",
         "price": 12,
         "hours": [
           {
             "day": "Mon",
-            "from": "7AM",
-            "to": "9AM",
-            "isBooked": true
-          },
-          {
-            "day": "Tue",
-            "from": "7AM",
-            "to": "9AM",
-            "isBooked": true
-          }
-        ]
-      },
-      "isSaved": false,
-      "age": "2024/01/01",
-      "size": "Medium",
-      "sex": "Female",
-      "location": "Kastanienallee, Berlin",
-      "image": "assets/imgs/dog_1.png"
-    },
-    {
-      "id": 2,
-      "name": "Ricotti",
-      "availability": "Weekdays 9:00",
-      "service": {
-        "id": 2,
-        "name": "Day Care",
-        "icon": "assets/imgs/day_care_icon.png",
-        "price": 18,
-        "hours": [
-          {
-            "day": "Mon",
             "from": "9AM",
-            "to": "11AM",
-            "isBooked": false
+            "to": "10AM",
+            "isBooked": true
           },
           {
             "day": "Wed",
             "from": "9AM",
-            "to": "11AM",
+            "to": "10AM",
             "isBooked": false
           }
         ]
@@ -59,37 +120,6 @@
       "size": "Small",
       "sex": "Male",
       "location": "Friedrichstrasse, Berlin",
-      "image": "assets/imgs/dog_2.png"
-    },
-    {
-        "id": 3,
-        "name": "Penne",
-        "availability": "Weekdays 9:00",
-        "service": {
-          "id": 3,
-          "name": "Dog Walking",
-          "icon": "assets/imgs/dog_walking_icon.png",
-          "price": 12,
-          "hours": [
-            {
-              "day": "Mon",
-              "from": "9AM",
-              "to": "11AM",
-              "isBooked": false
-            },
-            {
-              "day": "Wed",
-              "from": "9AM",
-              "to": "11AM",
-              "isBooked": false
-            }
-          ]
-        },
-        "isSaved": true,
-        "age": "2023/08/15",
-        "size": "Small",
-        "sex": "Male",
-        "location": "Friedrichstrasse, Berlin",
-        "image": "assets/imgs/dog_3.png"
-      }
-  ]
+      "image": "assets/imgs/dog_3.png"
+    }
+]

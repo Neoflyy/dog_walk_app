@@ -1,10 +1,11 @@
-import 'package:dog_walk_app/src/data/models/hour_model.dart';
+import 'package:dog_walk_app/src/data/models/models.dart';
 import 'package:equatable/equatable.dart';
 
 class ServiceModel extends Equatable {
   final int id;
   final String name;
   final String icon;
+  final String detail;
   final int price;
   final List<HourModel> hours;
 
@@ -13,6 +14,7 @@ class ServiceModel extends Equatable {
     required this.name,
     required this.icon,
     required this.price,
+    required this.detail,
     required this.hours,
   });
 
@@ -24,6 +26,7 @@ class ServiceModel extends Equatable {
       id: json['id'],
       name: json['name'],
       icon: json['icon'],
+      detail: json['detail'],
       price: json['price'],
       hours: hourList,
     );

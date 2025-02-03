@@ -1,6 +1,5 @@
-import 'package:dog_walk_app/ui_kit/ui_kit.dart';
+import 'package:dog_walk_app/ui_kit/widgets/save_icon.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class AppCard extends StatefulWidget {
   const AppCard({
@@ -8,10 +7,12 @@ class AppCard extends StatefulWidget {
     required this.image,
     required this.content,
     required this.onTap,
+    required this.isSaved,
   });
   final Function() onTap;
   final String image;
   final Widget content;
+  final bool isSaved;
 
   @override
   State<AppCard> createState() => _AppCardState();
@@ -22,8 +23,6 @@ class _AppCardState extends State<AppCard> {
   final double _defaultCardHeight = 200;
 
   final BorderRadius _radius = const BorderRadius.all(Radius.circular(8));
-
-  bool _isActive = false;
 
   @override
   Widget build(BuildContext context) {
@@ -46,15 +45,8 @@ class _AppCardState extends State<AppCard> {
               Positioned(
                 top: 10,
                 right: 10,
-                child: InkWell(
-                  onTap: () {
-                    _isActive = !_isActive;
-                    setState(() {});
-                  },
-                  child: SvgPicture.asset(
-                    _isActive ? Assets.saveIconFilled : Assets.saveIcon,
-                    fit: BoxFit.cover,
-                  ),
+                child: SaveIcon(
+                  isSaved: widget.isSaved,
                 ),
               ),
               Positioned(

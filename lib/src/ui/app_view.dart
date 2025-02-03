@@ -61,7 +61,7 @@ class AppHeaderWidget extends StatelessWidget {
           style: TextStyles.h1.copyWith(fontWeight: FontWeight.bold),
         ),
         const Spacer(),
-        AppButton(
+        IconButtonWrapper(
           onTap: () {},
           icon: Assets.filterIcon,
         ),

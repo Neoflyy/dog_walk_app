@@ -6,13 +6,13 @@ class AppScaffold extends StatelessWidget {
     super.key,
     required this.body,
     this.hasNavBar = true,
-    required this.header,
+    this.header,
     this.bottomNavigation,
   });
 
   final Widget body;
   final bool hasNavBar;
-  final Widget header;
+  final Widget? header;
   final Widget? bottomNavigation;
 
   @override
@@ -21,17 +21,19 @@ class AppScaffold extends StatelessWidget {
       bottomNavigationBar: hasNavBar ? bottomNavigation : null,
       backgroundColor: AppColors.surface,
       body: SafeArea(
+        top: hasNavBar,
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(
-                top: 22,
-                left: 16,
-                right: 16,
-                bottom: 16,
+            if (header != null)
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 22,
+                  left: 16,
+                  right: 16,
+                  bottom: 16,
+                ),
+                child: header,
               ),
-              child: header,
-            ),
             Expanded(
               child: body,
             ),

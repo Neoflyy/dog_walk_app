@@ -49,7 +49,10 @@ class App extends StatelessWidget {
                   );
                   break;
                 case RequestPage.path:
-                  page = const RequestPage();
+                  final args = settings.arguments as Map<String, dynamic>;
+                  page = RequestPage(
+                    pet: args['pet'],
+                  );
                   break;
               }
             } catch (e) {

@@ -59,6 +59,7 @@ class HomeView extends StatelessWidget {
                   }
                   if (state.status == Status.success && state.pets.isNotEmpty) {
                     return ListView.builder(
+                      controller: ScrollController(),
                       itemCount: state.pets.length + 1,
                       scrollDirection: Axis.vertical,
                       itemBuilder: (context, index) {
@@ -66,11 +67,11 @@ class HomeView extends StatelessWidget {
                           return const SizedBox(height: 100);
                         }
                         final PetModel pet = state.pets[index];
-                        print(pet);
                         return Padding(
                           padding: const EdgeInsets.only(bottom: 16),
                           child: AppCard(
                             image: pet.image,
+                            isSaved: pet.isSaved,
                             content: _PetContentWidget(
                               title: pet.name,
                               price: pet.service.price.toString(),

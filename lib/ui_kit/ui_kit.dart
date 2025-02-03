@@ -1,3 +1,10 @@
 export 'theme/app_colors.dart';
 export 'theme/assets.dart';
 export 'theme/text_styles.dart';
+export 'widgets/app_icon.dart';
+export 'widgets/app_card.dart';
+export 'widgets/info_column.dart';
+export 'widgets/navigation_header.dart';
+export 'widgets/save_icon.dart';
+export 'widgets/avatar.dart';
+export 'widgets/app_button.dart';

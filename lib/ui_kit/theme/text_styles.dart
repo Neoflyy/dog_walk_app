@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
 class TextStyles {
-  // Removed 'abstract' and 'final'
+  static TextStyle title = const TextStyle(
+    fontSize: 24,
+    fontWeight: FontWeight.bold,
+  );
+
   static TextStyle h1 = const TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.bold,
@@ -9,6 +13,11 @@ class TextStyles {
 
   static TextStyle h2 = const TextStyle(
     fontSize: 15,
+    fontWeight: FontWeight.bold,
+  );
+
+  static TextStyle bodyXXLarge = const TextStyle(
+    fontSize: 18,
     fontWeight: FontWeight.bold,
   );
 
